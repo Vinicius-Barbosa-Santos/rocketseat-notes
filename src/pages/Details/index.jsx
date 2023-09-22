@@ -1,9 +1,9 @@
-import './styles.css'
+import * as C from './styles'
 
 export const Details = () => {
   return(
-    <div>
+    <C.DetailsContainer>
       <h1>Olá!</h1>
-    </div>
+    </C.DetailsContainer>
   )
 }
