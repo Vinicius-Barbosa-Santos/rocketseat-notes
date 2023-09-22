@@ -1,9 +1,17 @@
 import * as C from './styles'
 
+// import Components
+import { Button } from '../../components/Button'
+
 export const Details = () => {
-  return(
+  return (
     <C.DetailsContainer>
-      <h1>Olá!</h1>
+      <h1>Hello World</h1>
+      <span>Vinícius Barbosa</span>
+
+      <Button title={'Login'} loading />
+      <Button title={'Cadastrar'} />
+      <Button title={'Entrar'} />
     </C.DetailsContainer>
   )
 }
