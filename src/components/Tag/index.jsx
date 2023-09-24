@@ -2,9 +2,11 @@
 import * as C from './styles'
 
 // eslint-disable-next-line react/prop-types
-export const Tag = ({ title }) => {
+export const Tag = ({ title, ...rest }) => {
     return (
-        <C.TagsContainer>
+        <C.TagsContainer
+            {...rest}
+        >
             {title}
         </C.TagsContainer>
     )
