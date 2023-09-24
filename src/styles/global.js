@@ -32,4 +32,11 @@ export const Global = createGlobalStyle`
     button:hover, a:hover {
         filter : brightness(0.9)
     }
+
+    @media(max-width: 768px) {
+        html {
+            font-size: 87.5%;
+        }
+    }
+
 `

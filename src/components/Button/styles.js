@@ -13,6 +13,6 @@ export const ButtonContainer = styled.button`
     font-weight: 500;
 
     &:disabled {
-        
+        opacity: 0.5;
     }
 `
