@@ -3,6 +3,7 @@ import * as C from './styles'
 
 // import Components
 import { Input } from '../../components/Input'
+import { TextArea } from '../../components/TextArea'
 import { Header } from '../../components/Header'
 
 export const New = () => {
@@ -18,8 +19,12 @@ export const New = () => {
                         <a href="/">voltar</a>
                     </header>
 
-                    <Input 
+                    <Input
                         placeholder="Título"
+                    />
+
+                    <TextArea 
+                        placeholder="Observações"
                     />
                 </C.Form>
             </main>
