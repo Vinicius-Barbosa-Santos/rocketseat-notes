@@ -9,6 +9,9 @@ import { Section } from '../../components/Section'
 import { TextArea } from '../../components/TextArea'
 import { NoteItem } from '../../components/NoteItem'
 
+// import React-Router-Dom
+import { Link } from 'react-router-dom'
+
 export const New = () => {
     return (
         <C.NewContainer>
@@ -19,7 +22,7 @@ export const New = () => {
                     <header>
                         <h1>Criar nota</h1>
 
-                        <a href="/">voltar</a>
+                        <Link to={'/'}>voltar</Link>
                     </header>
 
                     <Input

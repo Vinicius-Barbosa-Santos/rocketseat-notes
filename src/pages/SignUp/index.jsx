@@ -8,6 +8,9 @@ import { Button } from '../../components/Button'
 // import React-Icons
 import { FiMail, FiLock, FiUser } from 'react-icons/fi'
 
+// import React-Router-Dom
+import { Link } from 'react-router-dom'
+
 export const SignUp = () => {
     return (
         <C.Container>
@@ -39,9 +42,9 @@ export const SignUp = () => {
 
                 <Button title={'Cadastrar'} />
 
-                <a href="#">
+                <Link to={'/'}>
                     Voltar para o login
-                </a>
+                </Link>
             </C.Form>
         </C.Container>
     )

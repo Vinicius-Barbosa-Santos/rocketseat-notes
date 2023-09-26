@@ -9,7 +9,7 @@ import { Section } from '../../components/Section'
 import { ButtonText } from '../../components/ButtonText'
 
 // import React-Icons
-import { FiPlus, FiSearch } from 'react-icons/fi'
+import { FiPlus } from 'react-icons/fi'
 
 export const Home = () => {
     return (
@@ -27,7 +27,7 @@ export const Home = () => {
             </C.Menu>
 
             <C.Search>
-                <Input placeholder="Pesquisar pelo título" icon={FiSearch} />
+                <Input placeholder="Pesquisar pelo título" />
             </C.Search>
 
             <C.Content>
@@ -43,7 +43,7 @@ export const Home = () => {
                 </Section>
             </C.Content>
 
-            <C.NewNote>
+            <C.NewNote to={'/new'}>
                 <FiPlus />
                 Criar Nota
             </C.NewNote>

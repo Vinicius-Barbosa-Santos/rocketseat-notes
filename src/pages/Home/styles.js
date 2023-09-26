@@ -1,5 +1,8 @@
 import styled from "styled-components";
 
+// import React-Router-Dom
+import { Link } from 'react-router-dom'
+
 export const HomeContainer = styled.div`
     width: 100%;
     height: 100vh;
@@ -61,10 +64,11 @@ export const Content = styled.div`
     padding: 64px 64px 0;
 `
 
-export const NewNote = styled.button`
+export const NewNote = styled(Link)`
     grid-area: newnote;
     
 
+    color: ${({ theme }) => theme.COLORS.BACKGROUND_900};
     background-color: ${({ theme }) => theme.COLORS.ORANGE};
     border: none;
 
