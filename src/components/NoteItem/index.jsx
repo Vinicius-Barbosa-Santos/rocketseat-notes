@@ -5,10 +5,10 @@ import * as C from './styles'
 import { FiPlus, FiX } from 'react-icons/fi'
 
 // eslint-disable-next-line react/prop-types
-export const NoteItem = ({ isNew, value, onClick, ...rest }) => {
+export const NoteItem = ({ isNew = false, value, onClick, ...rest }) => {
     return (
         <C.NoteItemContainer
-            isNew={isNew}
+            $isnew={isNew}
         >
             <input
                 type="text"
