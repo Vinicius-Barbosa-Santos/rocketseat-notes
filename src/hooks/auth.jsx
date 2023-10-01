@@ -1,4 +1,4 @@
-import { createContext } from "react";
+import { createContext, useEffect } from "react";
 
 // import React
 import { useContext, useState } from 'react'
@@ -18,9 +18,12 @@ export const AuthProvider = ({ children }) => {
             const response = await api.post('/sessions', { email, password })
             const { user, token } = response.data
 
-            api.defaults.headers.authorization = `Bearer ${token}`
-            setData({ user, token })
+            localStorage.setItem('@rocketnotes:user', JSON.stringify(user))
+            localStorage.setItem('@rocketnotes:token', token)
 
+            api.defaults.headers.common['Authorization'] = `Bearer ${token}`
+
+            setData({ user, token })
         } catch (error) {
             if (error.response) {
                 alert(error.response.data.message)
@@ -30,8 +33,63 @@ export const AuthProvider = ({ children }) => {
         }
     }
 
+    const signOut = () => {
+        localStorage.removeItem('@rocketnotes:token')
+        localStorage.removeItem('@rocketnotes:user')
+
+        setData({})
+    }
+
+    const updateProfile = async ({ user, avatarFile }) => {
+        try {
+            if(avatarFile) {
+                const fileUploadForm = new FormData()
+                fileUploadForm.append('avatar', avatarFile)
+
+                const response = await api.patch('/users/avatar', fileUploadForm)
+                user.avatar = response.data.avatar
+            }
+
+            await api.put('/users', user)
+            localStorage.setItem('@rocketnotes:user', JSON.stringify(user))
+
+            setData({
+                token : data.token,
+                user
+            })
+
+            alert('Perfil atualizado!')
+
+        } catch (error) {
+            if (error.response) {
+                alert(error.response.data.message)
+            } else {
+                alert('Não foi possível atualizar o perfil.')
+            }
+        }
+    }
+
+    useEffect(() => {
+        const token = localStorage.getItem('@rocketnotes:token')
+        const user = localStorage.getItem('@rocketnotes:user')
+
+        if (token && user) {
+            api.defaults.headers.common['Authorization'] = `Bearer ${token}`
+
+            setData({
+                token,
+                user: JSON.parse(user)
+            })
+        }
+    }, [])
+
     return (
-        <AuthContext.Provider value={{ signIn, user : data.user }}>
+        <AuthContext.Provider value={{
+            signIn,
+            signOut,
+            user: data.user,
+            updateProfile
+        }}>
             {children}
         </AuthContext.Provider>
     )
