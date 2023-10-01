@@ -6,7 +6,7 @@ export const ButtonText = ({title, isActive = false, ...rest}) => {
     return(
         <C.ButtonTextContainer
             type='button'
-            $isactive={isActive.toString()}
+            $isactive={isActive}
             {...rest}
         >
             {title}

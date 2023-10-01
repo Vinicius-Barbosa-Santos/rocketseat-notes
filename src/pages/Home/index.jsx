@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-key */
 // import Styled 
 import * as C from './styles'
 
@@ -11,7 +12,34 @@ import { ButtonText } from '../../components/ButtonText'
 // import React-Icons
 import { FiPlus } from 'react-icons/fi'
 
+// import React
+import { useState, useEffect } from 'react'
+import { api } from '../../services/api'
+
 export const Home = () => {
+    const [tags, setTags] = useState([])
+    const [tagsSelected, setTagsSelected] = useState([])
+
+    const handleTagSelected = (tagName) => {
+        const alreadySelected = tagsSelected.includes(tagName)
+
+        if(alreadySelected) {
+            const filteredTags = tagsSelected.filter(tag => tag !== tagName)
+            setTagsSelected(filteredTags)
+        } else {
+            setTagsSelected(prevState => [...prevState, tagName])
+        }
+    }
+
+    const fetchTags = async () => {
+        const response = await api.get('/tags')
+        setTags(response.data)
+    }
+
+    useEffect(() => {
+        fetchTags()
+    }, [])
+
     return (
         <C.HomeContainer>
             <C.Brand>
@@ -21,9 +49,24 @@ export const Home = () => {
             <Header />
 
             <C.Menu>
-                <li><ButtonText title={'Todos'} isActive /></li>
-                <li><ButtonText title={'React'} /></li>
-                <li><ButtonText title={'Node'} /></li>
+                <li>
+                    <ButtonText 
+                        title={'Todos'} 
+                        isActive={tagsSelected.length === 0}
+                        onClick={() => handleTagSelected('all')}
+                    />
+                </li>
+                {tags && tags.map((tag) => (
+                    <li
+                        key={String(tag.id)}
+                    >
+                        <ButtonText 
+                            title={tag.name} 
+                            onClick={() => handleTagSelected(tag.name)}
+                            isActive={tagsSelected.includes(tag.name)}
+                        />
+                    </li>
+                ))}
             </C.Menu>
 
             <C.Search>
