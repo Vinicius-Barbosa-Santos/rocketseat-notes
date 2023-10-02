@@ -8,34 +8,74 @@ import { Button } from '../../components/Button'
 import { Section } from '../../components/Section'
 import { ButtonText } from '../../components/ButtonText'
 
+// import React-Router-Dom
+import { useParams, useNavigate } from 'react-router-dom'
+
+// import API
+import { api } from '../../services/api'
+
+// import React
+import { useState, useEffect } from 'react'
+
 export const Details = () => {
+  const params = useParams()
+  const navigate = useNavigate()
+
+  const [data, setData] = useState(null)
+
+  const handleBack = () => {
+    navigate('/')
+  }
+
+  const fetchNote = async () => {
+    const response = await api.get(`/notes/${params.id}`)
+    setData(response.data)
+  }
+
+  useEffect(() => {
+    fetchNote()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
   return (
     <C.DetailsContainer>
       <Header />
 
-      <main>
-        <C.Content>
-          <ButtonText title={'Excluir nota'} />
+      {data &&
+        <main>
+          <C.Content>
+            <ButtonText title={'Excluir nota'} />
 
-          <h1>Introdução ao React</h1>
+            <h1>{data.title}</h1>
 
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla alias similique fugit minus, porro culpa aliquam, beatae consectetur deleniti cumque praesentium aliquid nesciunt dolore blanditiis quos, soluta voluptas esse sunt? Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nulla neque tempore maiores veritatis? Id itaque cupiditate unde consequuntur maxime, labore, officiis cum error iure magnam tempora explicabo pariatur odio minima?</p>
+            <p>{data.description}</p>
 
-          <Section title={'Links úteis'}>
-            <C.Links>
-              <li><a href="#">https://www.rocketseat.com.br/</a></li>
-              <li><a href="#">https://www.rocketseat.com.br/</a></li>
-            </C.Links>
-          </Section>
+            {data.links &&
+              <Section title={'Links úteis'}>
+                <C.Links>
+                  {data.links.map((link) => (
+                    // eslint-disable-next-line react/jsx-key, react/jsx-no-target-blank
+                    <li key={String(link.id)}><a href={link.url} target='_blank'>{link.url}</a></li>
+                  ))}
+                </C.Links>
+              </Section>
+            }
 
-          <Section title={'Marcadores'}>
-            <Tag title={'express'} />
-            <Tag title={'nodejs'} />
-          </Section>
+            {data.tags &&
+              <Section title={'Marcadores'}>
+                {
+                  data.tags.map((tag) => (
+                    // eslint-disable-next-line react/jsx-key
+                    <Tag key={String(tag.id)} title={tag.name} />
+                  ))
+                }
+              </Section>
+            }
 
-          <Button title={'Voltar'} />
-        </C.Content>
-      </main>
+            <Button title={'Voltar'} onClick={handleBack} />
+          </C.Content>
+        </main>
+      }
     </C.DetailsContainer>
   )
 }
