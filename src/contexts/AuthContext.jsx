@@ -1,7 +1,4 @@
-import { createContext, useEffect } from "react";
-
-// import React
-import { useContext, useState } from 'react'
+import { createContext, useContext, useEffect, useState } from 'react'
 
 // import API
 import { api } from '../services/api'
@@ -9,7 +6,8 @@ import { api } from '../services/api'
 export const AuthContext = createContext({})
 
 // eslint-disable-next-line react/prop-types
-export const AuthProvider = ({ children }) => {
+export const AuthContextProvider = ({ children }) => {
+
     const [data, setData] = useState({})
 
     // eslint-disable-next-line no-unused-vars
@@ -18,67 +16,71 @@ export const AuthProvider = ({ children }) => {
             const response = await api.post('/sessions', { email, password })
             const { user, token } = response.data
 
-            localStorage.setItem('@rocketnotes:user', JSON.stringify(user))
-            localStorage.setItem('@rocketnotes:token', token)
+            localStorage.setItem('@user', JSON.stringify(user))
+            localStorage.setItem('@token', token)
 
-            api.defaults.headers.common['Authorization'] = `Bearer ${token}`
+            api.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 
             setData({ user, token })
+
         } catch (error) {
             if (error.response) {
                 alert(error.response.data.message)
             } else {
-                alert('Não foi possível entrar.')
+                alert('Não foi possível logar o usuário!')
             }
         }
     }
 
     const signOut = () => {
-        localStorage.removeItem('@rocketnotes:token')
-        localStorage.removeItem('@rocketnotes:user')
+        localStorage.removeItem('@user')
+        localStorage.removeItem('@token')
 
         setData({})
     }
 
     const updateProfile = async ({ user, avatarFile }) => {
         try {
-            if(avatarFile) {
-                const fileUploadForm = new FormData()
-                fileUploadForm.append('avatar', avatarFile)
 
-                const response = await api.patch('/users/avatar', fileUploadForm)
+            if (avatarFile) {
+                const filePath = new FormData()
+                filePath.append('avatar', avatarFile)
+
+                const response = await api.patch('/users/avatar', filePath)
                 user.avatar = response.data.avatar
             }
 
             await api.put('/users', user)
-            localStorage.setItem('@rocketnotes:user', JSON.stringify(user))
+
+            localStorage.setItem('@user', JSON.stringify(user))
 
             setData({
-                token : data.token,
-                user
+                user,
+                token : data.token
             })
 
-            alert('Perfil atualizado!')
+            alert('Perfil Atualizado!')
 
         } catch (error) {
             if (error.response) {
                 alert(error.response.data.message)
             } else {
-                alert('Não foi possível atualizar o perfil.')
+                alert('Não foi possível atualizar o usuário!')
             }
         }
     }
 
     useEffect(() => {
-        const token = localStorage.getItem('@rocketnotes:token')
-        const user = localStorage.getItem('@rocketnotes:user')
+        const user = localStorage.getItem('@user')
+        const token = localStorage.getItem('@token')
 
-        if (token && user) {
-            api.defaults.headers.common['Authorization'] = `Bearer ${token}`
+        if (user && token) {
+
+            api.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 
             setData({
-                token,
-                user: JSON.parse(user)
+                user: JSON.parse(user),
+                token
             })
         }
     }, [])
@@ -87,8 +89,8 @@ export const AuthProvider = ({ children }) => {
         <AuthContext.Provider value={{
             signIn,
             signOut,
-            user: data.user,
-            updateProfile
+            updateProfile,
+            user: data.user
         }}>
             {children}
         </AuthContext.Provider>

@@ -1,12 +1,14 @@
-// import Styled
+// import Styles
 import * as C from './styles'
 
 // eslint-disable-next-line react/prop-types
-export const Section = ({ title, children }) => {
+export const Session = ({ title, children }) => {
     return (
-        <C.SectionContainer>
+        <C.Container>
             <h2>{title}</h2>
+            <C.Line />
+
             {children}
-        </C.SectionContainer>
+        </C.Container>
     )
 }

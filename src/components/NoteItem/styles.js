@@ -1,44 +1,38 @@
-import styled from "styled-components";
+import { styled } from 'styled-components'
 
-export const NoteItemContainer = styled.div`
+export const Container = styled.div`
+    width: 100%;
     display: flex;
     align-items: center;
+    justify-content: space-between;
 
-    color: ${({ theme }) => theme.COLORS.GRAY_300};
-    background-color: ${({ theme, $isnew }) => $isnew ? 'transparent' : theme.COLORS.BACKGROUND_900};
+    padding: 1.25rem;
 
-    border: ${({ theme, $isnew }) => $isnew ? `1px dashed ${theme.COLORS.GRAY_300}` : 'none'};
+    gap : 1.25rem;
 
-    margin-bottom: 8px;
-    border-radius: 10px;
-    padding-right: 16px;
-
-    > button {
-        border: none;
-        background: none;
-    }
-
-    .button-delete {
-        color: ${({theme}) => theme.COLORS.RED}
-    }
-
-    .button-add {
-        color: ${({theme}) => theme.COLORS.ORANGE}
-    }
+    margin-bottom: 1.188rem;
 
     > input {
-        width: 100%;
-        height: 56px;
-
-        padding: 12px;
-
-        color: ${({theme}) => theme.COLORS.WHITE};
+        border: 0;
         background: transparent;
 
-        border: none;
-
-        &::placeholder {
-            color: ${({theme}) => theme.COLORS.GRAY_300}
-        }
+        width: 100%;
+        color: ${({ theme }) => theme.COLORS.WHITE};
     }
+
+    > button {
+        border: 0;
+        padding: 0;
+        margin: 0;
+
+        background: transparent;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    border-radius: 10px;
+    border: dashed 2px ${({ theme, $isnew }) => $isnew ? theme.COLORS.GRAY_300 : 'none'};
+    background-color: ${({ theme, $isnew }) => $isnew ? 'transparent' : theme.COLORS.BACKGROUND_900};
 `

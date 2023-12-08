@@ -1,73 +1,83 @@
-import styled from "styled-components";
+import { styled } from 'styled-components'
 
-export const ProfileContainer = styled.div`
+import { Link } from 'react-router-dom'
+
+export const Container = styled.div`
     width: 100%;
+    height: 9rem;
 
-    > header {
-        width: 100%;
-        height: 144px;
+    background-color: ${({ theme }) => theme.COLORS.BACKGROUND_900};
+`
 
-        background: ${({ theme }) => theme.COLORS.BACKGROUND_900};
+export const ButtonBack = styled(Link)`
+    border: 0;
+    background: transparent;
 
-        display: flex;
-        align-items: center;
+    > svg {
+        margin: 2.938rem 9rem;
+    }
 
-        padding: 0 124px;
+    @media(max-width: 728px) {
+        > svg {
+            margin: 2.938rem 1.25rem;
+        }
+    }
 
-        svg {
-            font-size: 24px;
-            color: ${({ theme }) => theme.COLORS.GRAY_100};
+    @media(max-width: 280px) {
+        > svg {
+            margin: 2.938rem 0.625rem;
         }
     }
 `
 
-export const Form = styled.form`
-    max-width: 340px;
-    margin: 30px auto 0;
+export const AvatarProfile = styled.div`
+    margin-top: -6.125rem;
 
-    > div:nth-child(4) {
-        margin-top: 24px;
-    }
+    display: flex;
+    align-items: center;
+    justify-content: center;
 `
 
-export const Avatar = styled.div`
+export const AvatarContent = styled.div`
     position: relative;
-    margin: -124px auto 32px;
 
-    width: 186px;
-    height: 186px;
-    
     > img {
-        width: 186px;
         height: 186px;
+        height: 186px;
+
         border-radius: 50%;
-    }   
+    }
+`
 
-    > label {
-        width: 48px;
-        height: 48px;
+export const Camera = styled.label`
+    position: absolute;
+    right: 0;
 
-        background-color: ${({theme}) => theme.COLORS.ORANGE};
-        border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-        display: flex;
-        align-items: center;
-        justify-content: center;
+    width: 48px;
+    height: 48px;
 
-        position: absolute;
-        bottom: 7px;
-        right: 7px;
+    cursor: pointer;
+    margin-top: -50px;
 
-        cursor: pointer;
+    > input {
+        display: none;
+    }
 
-        input {
-            display: none;
-        }
+    border-radius: 50%;
+    background-color: ${({ theme }) => theme.COLORS.ORANGE};
+`
 
-        svg {
-            width: 20px;
-            height: 20px;
-            color: ${({theme}) => theme.COLORS.BACKGROUND_800};
-        }
+export const Content = styled.div`
+    padding: 0 1.25rem;
+    max-width: 340px;
+
+    margin: 4rem auto 0;
+
+    > div:nth-child(2), > div:nth-child(4) {
+        margin-bottom: 1.5rem;
     }
 `

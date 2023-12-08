@@ -1,15 +1,13 @@
-// import Styled
+// import Styles
 import * as C from './styles'
 
 // eslint-disable-next-line react/prop-types
-export const Button = ({ title, loading, onClick }) => {
+export const Button = ({ title, ...rest }) => {
     return (
-        <C.ButtonContainer
-            type='button'
-            disabled={loading}
-            onClick={onClick}
+        <C.Container
+            {...rest}
         >
-            {loading ? 'Carregando' : title}
-        </C.ButtonContainer>
+            {title}
+        </C.Container>
     )
 }

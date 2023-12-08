@@ -1,62 +1,56 @@
-import styled from "styled-components";
-
-// import React-Router-Dom
-import { Link } from 'react-router-dom'
+import { styled } from 'styled-components'
 
 export const HeaderContainer = styled.header`
     grid-area: header;
 
-    height: 105px;
-    width: 100%;
-
-    border-bottom-width: 1px;
-    border-bottom-style: solid;
-    border-bottom-color: ${({theme}) => theme.COLORS.BACKGROUND_700};
-
     display: flex;
+    align-items: center;
     justify-content: space-between;
 
-    padding: 0 80px;
+    border-bottom: 1px solid ${({ theme }) => theme.COLORS.BACKGROUND_700};
+`
 
-    @media(max-width: 425px) {
-        padding: 0 20px;
+export const LeftSide = styled.div`
+    padding: 1.25rem 2.813rem;
+
+    @media(max-width: 728px) {
+        padding: 1.25rem;
     }
 `
 
-export const Profile = styled(Link)`
+export const AvatarProfile = styled.div`
     display: flex;
-    align-items: center;
 
-    > img {
-        width: 56px;
-        height: 56px;
+    img {
+        width: 4.375rem;
+        height: 4.375rem;
+
         border-radius: 50%;
     }
+`
 
-    > div {
-        display: flex;
-        line-height: 24px;
-        margin-left: 16px;
-        flex-direction: column;
+export const AvatarProfileText = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 
-        span {
-            font-size: 14px;
-            color: ${({theme}) => theme.COLORS.GRAY_100};
-        }
-
-        strong {
-            font-size: 18px;
-            color: ${({theme}) => theme.COLORS.WHITE};
-        }
+    > span {
+        font-size: 0.875rem;
+        color: ${({ theme }) => theme.COLORS.GRAY_100};
     }
+
+    > strong {
+        font-size: 1.125rem;
+        color: ${({ theme }) => theme.COLORS.WHITE};
+    }
+
+    margin-left: 0.563rem;
 `
 
 export const Logout = styled.button`
-    border: none;
-    background: none;
+    border: 0;
+    cursor: pointer;
+    background: transparent;
 
-    > svg {
-        font-size: 36px;
-        color: ${({theme}) => theme.COLORS.GRAY_100};
-    }
+    padding: 2.188rem 2.5rem;
 `

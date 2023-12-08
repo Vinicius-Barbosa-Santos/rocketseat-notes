@@ -7,31 +7,46 @@ import { Button } from '../../components/Button'
 import { ButtonText } from '../../components/ButtonText'
 
 // import React Icons
+import { FiUser } from "react-icons/fi";
 import { FaLock } from "react-icons/fa";
 import { AiOutlineMail } from "react-icons/ai";
 
-// import Link
-import { Link } from 'react-router-dom';
+// import React Router
+import { Link, useNavigate } from 'react-router-dom';
 
 // import React
 import { useState } from 'react';
 
-// import Context
-import { useAuth } from '../../contexts/AuthContext'
+// import API
+import { api } from '../../services/api'
 
-export const SignIn = () => {
+export const SignOut = () => {
 
+    const [name, setName] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
 
-    const { signIn } = useAuth()
+    const navigate = useNavigate()
 
-    const handleSignIn = () => {
-        signIn({ email, password })
+    const handleRegister = () => {
+        api.post('/users', { name, email, password })
+            .then(() => {
+                alert('Usuário Cadastrado com sucesso!')
+                navigate('/')
+            })
+            .catch(error => {
+                if (error.response) {
+                    alert(error.response.data.message)
+                } else {
+                    alert('Não foi possível cadastrar o usuário!')
+                }
+            })
     }
 
     return (
         <C.Container>
+            <C.Banner />
+
             <C.User>
                 <C.UserContent>
                     <h1>Rocket Notes</h1>
@@ -40,9 +55,17 @@ export const SignIn = () => {
                         Aplicação para salvar e gerenciar seus links úteis.
                     </p>
 
-                    <h2>Faça seu login</h2>
+                    <h2>Crie sua conta</h2>
 
                     <C.InputContent>
+                        <Input
+                            type={'text'}
+                            icon={FiUser}
+                            value={name}
+                            placeholder={'Nome'}
+                            onChange={(e) => setName(e.target.value)}
+                        />
+
                         <Input
                             type={'email'}
                             icon={AiOutlineMail}
@@ -60,17 +83,15 @@ export const SignIn = () => {
                         />
 
                         <C.ButtonAuthenticated>
-                            <Button title={'Entrar'} onClick={handleSignIn} />
+                            <Button title={'Cadastrar'} onClick={handleRegister} />
                         </C.ButtonAuthenticated>
                     </C.InputContent>
 
-                    <Link to={'/register'}>
-                        <ButtonText title={'Criar Conta'} isActive />
+                    <Link to={'/'}>
+                        <ButtonText title={'Voltar para o login'} isActive />
                     </Link>
                 </C.UserContent>
             </C.User>
-
-            <C.Banner />
         </C.Container>
     )
 }

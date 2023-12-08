@@ -1,18 +1,15 @@
-import styled from "styled-components";
+import { styled } from 'styled-components'
 
-export const ButtonContainer = styled.button`
+export const Container = styled.button`
     width: 100%;
-    color: ${({theme}) => theme.COLORS.BACKGROUND_800};
-    background-color: ${({theme}) => theme.COLORS.ORANGE};
+    height: 3.5rem;
 
-    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
     border: 0;
-    padding: 0 16px;
-    margin-top: 16px;
     border-radius: 10px;
-    font-weight: 500;
-
-    &:disabled {
-        opacity: 0.5;
-    }
+    margin-bottom: 1.875rem;
+    background-color: ${({theme}) => theme.COLORS.ORANGE};
 `

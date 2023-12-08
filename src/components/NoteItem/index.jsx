@@ -1,29 +1,29 @@
-// import Styled
+// import Styles
 import * as C from './styles'
 
-// import React-Icons
-import { FiPlus, FiX } from 'react-icons/fi'
+// import React Icons
+import { FiPlus } from "react-icons/fi";
+import { MdClose } from "react-icons/md";
 
 // eslint-disable-next-line react/prop-types
-export const NoteItem = ({ isNew = false, value, onClick, ...rest }) => {
+export const NoteItem = ({ value, isNew = false, onClick, ...rest }) => {
     return (
-        <C.NoteItemContainer
+        <C.Container
             $isnew={isNew}
         >
             <input
                 type="text"
-                value={value}
                 readOnly={!isNew}
+                value={value}
                 {...rest}
             />
 
             <button
                 type='button'
                 onClick={onClick}
-                className={isNew ? 'button-add' : 'button-delete'}
             >
-                {isNew ? <FiPlus /> : <FiX />}
+                {isNew ? <FiPlus size={24} color='#FF9000' /> : <MdClose size={24} color='#FF002E' />}
             </button>
-        </C.NoteItemContainer>
+        </C.Container>
     )
 }

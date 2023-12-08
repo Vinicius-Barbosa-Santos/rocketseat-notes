@@ -1,42 +1,65 @@
 import styled from "styled-components";
 
-export const NewContainer = styled.div`
+export const Container = styled.div`
     width: 100%;
     height: 100vh;
 
     display: grid;
-    grid-template-rows: 105px;
+    grid-template-rows: 106px auto;
     grid-template-areas: 
         "header"
         "content"
     ;
+`
 
-    > main {
-        grid-area: content;
-        overflow-y: auto;
+export const Content = styled.div`
+    grid-area: content;
+    margin: 0 auto;
+    
+    width: 600px;
+
+    > textarea {
+        width: 100%;
+        resize: none;
+
+        margin-top: 1rem;
+        margin-bottom: 2.125rem;
+
+        height: 9.375rem;
+        padding: 0.938rem;
+
+        border: 0;
+        border-radius: 0.625rem;
+        color: ${({theme}) => theme.COLORS.WHITE};
+        background-color: ${({theme}) => theme.COLORS.BACKGROUND_900};
     }
 
-    .tags {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-between;
+    @media(max-width: 425px) {
+        width: 90%;
+        padding: 0 1.25rem;
     }
 `
 
-export const Form = styled.form`
-    max-width: 550px;
-    margin: 38px auto;
+export const ContentTop = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 
-    > header {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
+    margin-top: 3.063rem;
+    margin-bottom: 2.25rem;
+`
 
-        margin-bottom: 36px;
+export const MarkItem = styled.div`
+    margin-top: 2.938rem;
 
-        a {
-            font-size: 20px;
-            color: ${({theme}) => theme.COLORS.GRAY_100};
-        }
+    button {
+        margin-top: 2.125rem;
     }
+`
+
+export const SessionFlex = styled.div`
+    display: grid;
+    gap: 1.188rem;
+
+    grid-template-columns: repeat(2, 1fr);
 `

@@ -1,15 +1,16 @@
-// import Styled
+// import Styles Components
 import * as C from './styles'
 
-
 // eslint-disable-next-line react/prop-types
-export const Input = ({ icon: Icon, ...rest }) => {
+export const Input = ({ type, icon: Icon, placeholder, ...rest }) => {
     return (
-        <C.InputContainer>
-            {Icon && <Icon size={20} />}
+        <C.Container>
+            {Icon && <Icon size={20} color={'#666360'} />}
             <input
+                type={type}
+                placeholder={placeholder}
                 {...rest}
             />
-        </C.InputContainer>
+        </C.Container>
     )
 }

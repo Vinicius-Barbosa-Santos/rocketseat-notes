@@ -1,26 +1,23 @@
-import styled from "styled-components";
+import { styled } from "styled-components";
 
-export const NoteContainer = styled.button`
+export const Container = styled.div`
     width: 100%;
+
+    margin-bottom: 1.25rem;
+
+    cursor: pointer;
+
+    border-radius: 10px;
     background-color: ${({theme}) => theme.COLORS.BACKGROUND_700};
 
-    border: none;
-    border-radius: 10px;
-
-    padding: 22px;
-    margin-bottom: 16px;
-
     > h1 {
-        flex: 1;
-        text-align: left;
-        font-weight: 700;
-        font-size: 24px;
-        color: ${({theme}) => theme.COLORS.WHITE};
+        padding: 1rem 1.375rem 1.5rem;
     }
 
     > footer {
-        width: 100%;
         display: flex;
-        margin-top: 24px;
+
+        padding: 0px 1.25rem 1rem;
     }
 `
+
