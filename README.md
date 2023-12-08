@@ -1,8 +1,30 @@
-# React + Vite
+<p align="center">
+  <a href="#-tecnologias">Tecnologias</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#-projeto">Projeto</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#-como-executar">Como executar</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+</p>
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+<p align="center">
+  <img alt="Projeto" src="https://github.com/Vinicius-Barbosa-Santos/todo-rocketseat/blob/master/ToDo-List.jpg">
+</p>
 
-Currently, two official plugins are available:
+<br>
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## ✨ Tecnologias
+
+Esse projeto foi desenvolvido com as seguintes tecnologias:
+
+- [Vite](https://vitejs.dev/)
+- [React](https://reactjs.org)
+
+## 💻 Projeto
+
+O Rocket Notes é um app que foi constrúido como desafio da Rocketseat, o objetivo do projeto era fazer uma lista de tarefas.
+
+## 🚀 Como executar
+
+- Clone o repositório
+- Instale as dependências com `npm`
+- Inicie o servidor com `npm start`
+
+Agora você pode acessar [`localhost:3000`](http://localhost:3000) do seu navegador.
