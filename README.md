@@ -5,7 +5,7 @@
 </p>
 
 <p align="center">
-  <img alt="Projeto" src="https://github.com/Vinicius-Barbosa-Santos/todo-rocketseat/blob/master/ToDo-List.jpg">
+  <img alt="Projeto" src="https://github.com/Vinicius-Barbosa-Santos/rocketseat-notes/blob/master/github/Capa.png">
 </p>
 
 <br>
