@@ -10,21 +10,29 @@ import { Link } from 'react-router-dom';
 // import Context
 import { useAuth } from '../../contexts/AuthContext'
 
+// import API
+import { api } from '../../services/api'
+
+// import Assets
+import profile from '../../assets/avatar_placeholder.svg'
+
 export const Header = () => {
 
-    const { signOut } = useAuth()
+    const { user, signOut } = useAuth()
+
+    const userAvatar = user.avatar ? `${api.defaults.baseURL}/files/${user.avatar}` : profile
 
     return (
         <C.HeaderContainer>
             <C.LeftSide>
                 <C.AvatarProfile>
                     <Link to={'/profile'}>
-                        <img src="https://avatars.githubusercontent.com/u/41848606?v=4" alt="Avatar Profile" />
+                        <img src={userAvatar} alt="Avatar Profile" />
                     </Link>
 
                     <C.AvatarProfileText>
                         <span>Bem vindo,</span>
-                        <strong>Vinícius Barbosa</strong>
+                        <strong>{user.name}</strong>
                     </C.AvatarProfileText>
                 </C.AvatarProfile>
             </C.LeftSide>
