@@ -19,7 +19,7 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
 
 ## 💻 Projeto
 
-O Rocket Notes é um app que foi constrúido como desafio da Rocketseat, o objetivo do projeto era fazer uma lista de tarefas.
+O Rocket Notes é um aplicativo desenvolvido como parte de um desafio proposto pela Rocketseat. O objetivo central do projeto era criar um aplicativo de notas.
 
 ## 🚀 Como executar
 
